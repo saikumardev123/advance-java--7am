@@ -1,0 +1,55 @@
+According to Sun Micro Systems, Java is divided in to 3 editions. 
+
+1. Java Standard Edition :  Core concepts of Java - Desktop Applications
+2. Java Enterprise Edition : Web Technology concepts - Server Side Applications/ Web Applications
+3. Java Mobile/Micro Edition :  Mobile Applications
+
+              
+    Java Enterprise Edition Hierarchy:
+
+                        
+                          Core Java 
+
+                    
+                 JDBC                     Servlets 
+
+                 Hibernate                  JSP 
+
+                                          Spring Framework 
+
+                                          Spring Boot 
+
+
+MySQL Database:
+
+MYSQL is a relational database management system which is used to store the data in the form of tables. 
+
+A table is a collection of rows and columns. 
+
+download and install:  
+
+https://dev.mysql.com/downloads/installer/
+
+
+Tasks:
+
+ 1. Install MYSQL database in your local machine. 
+
+ 2. Go through https://www.youtube.com/watch?v=h-1HOLd9ku8 video tutorial, practice the queries written 
+ in the video. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
