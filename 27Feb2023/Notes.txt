@@ -1,0 +1,111 @@
+ Prepared Statement:
+
+  PreparedStatement is used for dyamic queries. 
+
+  PreparedStatement provide good performance when compared with 
+  Statement. 
+
+ PreparedStatement provide pre compiled sql queries before sent to the database. 
+
+package com.dl.learning.jdbc;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+public class PreparedStatementDemo {
+	
+	public static void main(String[] args) throws ClassNotFoundException, SQLException {
+		
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		
+		Connection connection =  DriverManager.getConnection("jdbc:mysql://localhost:3306/netflix","root","ipl2021@dubai");
+	
+		   PreparedStatement preparedStatement  =  connection.prepareStatement("insert into users values(?,?,?)");
+		   
+		    preparedStatement.setInt(1, 105);
+		    preparedStatement.setString(2, "bc");
+		    preparedStatement.setString(3, "xyz");
+		   int i=  preparedStatement.executeUpdate();
+		   System.out.println(i);
+		   
+		   preparedStatement.close();
+		   connection.close();
+	
+	}
+
+}
+
+Metadata:
+
+Database Meta Data:
+
+The metadata is used to get the information of a database using 
+DatabaseMetaData interface. 
+
+package com.dl.learning.jdbc;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+import com.mysql.cj.jdbc.DatabaseMetaData;
+
+public class DatabaseMetaDataDemo {
+
+	public static void main(String[] args) throws ClassNotFoundException, SQLException {
+		
+        Class.forName("com.mysql.cj.jdbc.Driver");
+		
+		Connection connection =  DriverManager.getConnection("jdbc:mysql://localhost:3306/netflix","root","ipl2021@dubai");
+	
+		 DatabaseMetaData metaData = (DatabaseMetaData) connection.getMetaData();
+		 
+		 System.out.println(metaData);
+		 
+		 System.out.println(metaData.getDatabaseProductName());
+		 
+		 System.out.println(metaData.getDatabaseProductVersion());
+		 
+		 System.out.println(metaData.getDriverName());
+		
+		
+	}	
+}
+
+ResultSet MetaData:
+
+package com.dl.learning.jdbc;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+
+public class DatabaseMetaDataDemo {
+
+	public static void main(String[] args) throws ClassNotFoundException, SQLException {
+		
+        Class.forName("com.mysql.cj.jdbc.Driver");
+		
+		Connection connection =  DriverManager.getConnection("jdbc:mysql://localhost:3306/netflix","root","ipl2021@dubai");
+	
+		   Statement statement=connection.createStatement();
+		   
+		    ResultSet resultSet=statement.executeQuery("select * from users");
+		    
+		    ResultSetMetaData rs= resultSet.getMetaData();
+		    
+		    System.out.println(rs.getColumnCount());
+		    System.out.println(rs.getColumnLabel(2));
+		    System.out.println(rs.getColumnLabel(1));		   
+	}
+}
+
+
+
+
