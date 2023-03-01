@@ -1,0 +1,55 @@
+Servlets:
+
+Servlets are used to develop server side web applications.
+
+A Jakarta Servlet is a Java software component that extends the capabilities of a server. Although servlets can respond to many types of requests, they most commonly implement web containers for hosting web applications on web servers and thus qualify as a server-side servlet web API
+
+
+
+Environment Set up:
+
+1. Create dynamic web project 
+
+2. create a servlet 
+
+package com.demo;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class FirstServlet
+ */
+@WebServlet("/FirstServlet")
+public class FirstServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+    /**
+     * Default constructor. 
+     */
+    public FirstServlet() {
+        // TODO Auto-generated constructor stub
+    }
+    
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    	  System.out.println("I am in do get method");
+    }
+
+}
+3. download servlet jar file and add it to the build path 
+
+http://www.java2s.com/Code/Jar/j/Downloadjavaxservlet30jar.htm
+
+4. download apache tomcat server 
+https://tomcat.apache.org/download-90.cgi
+
+5. run the application on server 
+
+6. go to browser and put the url. 
+

@@ -69,6 +69,8 @@ public class DatabaseMetaDataDemo {
 		 System.out.println(metaData.getDatabaseProductVersion());
 		 
 		 System.out.println(metaData.getDriverName());
+
+         
 		
 		
 	}	

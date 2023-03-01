@@ -1,0 +1,220 @@
+Servlets Hierachy:
+
+There are 3 ways to create a Servlet.
+
+1. using Servlet interface   - Life Cycle Methods (5)
+
+If we want to create a Servlet then our class should implement Servlet interface. 
+
+
+class HelloServlet implements Servlet{
+
+   // provide impl for all 5 methods
+
+}
+
+
+package com.demo;
+
+import java.io.IOException;
+
+import javax.servlet.Servlet;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebServlet;
+
+@WebServlet("/ServletInterfaceDemo")
+public class ServletInterfaceDemo implements Servlet {
+
+	@Override
+	public void destroy() {
+		// TODO Auto-generated method stub
+		System.out.println("I am in destroy method");
+	}
+
+	@Override
+	public ServletConfig getServletConfig() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getServletInfo() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void init(ServletConfig arg0) throws ServletException {
+		// TODO Auto-generated method stub
+		
+		System.out.println("I am in init method");
+		
+	}
+
+	@Override
+	public void service(ServletRequest arg0, ServletResponse arg1) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		
+		System.out.println("I am in service method");
+		
+	}
+
+}
+
+
+
+2.  using GenericServlet class 
+
+
+ class HelloServlet extends GenericServlet {
+
+  // provide impl for service method
+
+ }
+
+
+ package com.demo;
+
+import java.io.IOException;
+
+import javax.servlet.GenericServlet;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebServlet;
+
+@WebServlet("/GenericServletDemo")
+public class GenericServletDemo extends GenericServlet {
+
+	@Override
+	public void service(ServletRequest arg0, ServletResponse arg1) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		System.out.println("I am in service");
+		
+	}
+
+}
+
+
+3. using HttpServlet class
+
+class HelloServlet extends HttpServlet{
+
+
+
+}
+
+
+package com.demo;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/HttpServletDemo")
+public class HttpServletDemo extends HttpServlet {
+
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		System.out.println("I am in do get");
+	}
+	
+}
+
+  Servlet Interface 
+ 
+       implemented by
+   
+   GenericServlet 
+
+       extended by 
+
+    HttpServlet
+
+
+
+Login Servlet:
+
+package com.demo;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class Login
+ */
+@WebServlet("/Login")
+public class Login extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		PrintWriter out = resp.getWriter();		
+		out.print("<html>\n" + 
+				"<head>\n" + 
+				"</head>\n" + 
+				"<body>\n" + 
+				"<form action=\"./Login\" method=\"post\">\n" + 
+				"  <div class=\"container\">\n" + 
+				"    <label for=\"uname\"><b>Username</b></label>\n" + 
+				"    <input type=\"text\" placeholder=\"Enter Username\" name=\"uname\" required>\n" + 
+				"\n" + 
+				"    <label for=\"psw\"><b>Password</b></label>\n" + 
+				"    <input type=\"password\" placeholder=\"Enter Password\" name=\"psw\" required>\n" + 
+				"    <button >Login</button>\n" + 
+				"  </div>\n" + 
+				"</form>\n" + 
+				"</body>\n" + 
+				"</html>");
+	}
+	@Override
+		protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+			
+		    System.out.println("do post called");
+		    
+		     String uname=  req.getParameter("uname");
+		     String password = req.getParameter("psw");
+		     System.out.println("uname   :"+ uname);
+		     System.out.println("upass   :"+ password);
+		     PrintWriter out = resp.getWriter();
+		       if(uname.contentEquals("digital") && password.contentEquals("lync")) {
+		    	  	
+		    	   out.print("Login success");
+		       }
+		       else {
+		    	   
+		    	   out.print("Login failure");
+		       }
+		     
+		     
+		     
+		     
+		     
+		     
+		     
+		     
+		     
+		     
+		     
+		     
+		     
+		     
+		     
+		     
+		     
+		     
+		
+		}
+}
