@@ -1,0 +1,7 @@
+Session Management:
+
+Http Protocol:  Http is a statleless Protocol which means it does not 
+remember the user / request information after providing the response. 
+
+
+

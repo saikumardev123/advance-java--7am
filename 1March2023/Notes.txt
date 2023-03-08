@@ -218,3 +218,16 @@ public class Login extends HttpServlet {
 		
 		}
 }
+
+
+
+class A{
+  a=10
+}
+
+class B{
+  a=20;
+}
+class C extends A,B{
+  // s.o.p(a);// 
+}

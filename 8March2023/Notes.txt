@@ -1,0 +1,161 @@
+
+Servlet Product Management:
+
+
+package com.product.management;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.sun.xml.internal.txw2.Document;
+
+/**
+ * Servlet implementation class ProductServlet
+ */
+@WebServlet("/ProductServlet")
+public class ProductServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public ProductServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+    
+	Connection connection= null;
+
+	@Override
+		public void init() throws ServletException {
+			 System.out.println("I am in init function");
+			 try {
+				 Class.forName("com.mysql.cj.jdbc.Driver"); 
+					 connection =  DriverManager.getConnection("jdbc:mysql://localhost:3306/ajio","root","ipl2021@dubai");
+					 System.out.println("connection"+connection);
+			 }
+			 catch(Exception e) {
+				   System.out.println(e);
+			 }
+		}
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		 PrintWriter out =response.getWriter();
+		 
+		 out.print("<head>\n" + 
+		 		"</head>\n" + 
+		 		"\n" + 
+		 		"<body>\n" + 
+		 		"    <form action=\"./ProductServlet\" method=\"post\">\n" + 
+		 		"        <input type=\"text\" name=\"productId\" placeholder=\"enter product Id\"> <br><br>\n" + 
+		 		"        <input type=\"text\" name=\"productName\" placeholder=\"enter product name\"><br><br>\n" + 
+		 		"        <input type=\"number\" name=\"price\" placeholder=\"enter price\"><br><br>\n" + 
+		 		"        <input type=\"text\" name=\"seller\" placeholder=\"enter seller name\"><br><br>\n" + 
+		 		"        <button>Add Product</button>\n" + 
+		 		"    </form>\n" + 
+		 		"</body>\n" + 
+		 		"\n" + 
+		 		"</html>");
+		
+	}
+	
+	
+
+    private ResultSet getProductsList() {
+   	      ResultSet rs= null;
+    	try {
+			PreparedStatement pStmt = connection.prepareStatement("select * from Product");
+			 rs = pStmt.executeQuery();
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return rs;
+    }
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+	  int productId =   Integer.parseInt(request.getParameter("productId"));
+	   String productName =  request.getParameter("productName");
+	   int price =  Integer.parseInt(request.getParameter("price"));
+	   String seller = request.getParameter("seller");
+	   System.out.println("connection in dopost" + connection);
+	   try {
+			PreparedStatement preparedStatement = connection.prepareStatement("insert into Product values(?,?,?,?)");
+			preparedStatement.setInt(1, productId);
+			preparedStatement.setString(2,productName);
+			preparedStatement.setInt(3,price);
+			preparedStatement.setString(4,seller);
+			int i = preparedStatement.executeUpdate();
+			PrintWriter out	=response.getWriter();
+			if(i != 0) {				
+              ResultSet rs =  getProductsList();
+              
+              while(rs.next()) {
+            	  System.out.println(rs.getInt(1) + "\t" + rs.getString(2) + "\t"+ rs.getInt(3) + "\t"+ rs.getString(4));
+              }
+				
+			  out.print("<html>\n" + 
+			  		"\n" + 
+			  		"<head>\n" + 
+			  		"</head>\n" + 
+			  		"\n" + 
+			  		"<body>\n" + 
+			  		"    <h1>Product Added Successfully!</h1>\n" + 
+			  		"    <form action=\"./ProductServlet\" method=\"post\">\n" + 
+			  		"        <input type=\"text\" name=\"productId\" placeholder=\"enter product Id\"> <br><br>\n" + 
+			  		"        <input type=\"text\" name=\"productName\" placeholder=\"enter product name\"><br><br>\n" + 
+			  		"        <input type=\"number\" name=\"price\" placeholder=\"enter price\"><br><br>\n" + 
+			  		"        <input type=\"text\" name=\"seller\" placeholder=\"enter seller name\"><br><br>\n" + 
+			  		"        <button>Add Product</button>\n" + 
+			  		"    </form>\n" + 
+			  		"</body>\n" + 
+			  		"\n" + 
+			  		"</html>");
+			}
+			else {
+				out.print("<html>\n" + 
+						"\n" + 
+						"<head>\n" + 
+						"</head>\n" + 
+						"\n" + 
+						"<body>\n" + 
+						"    <h1>Adding Product Failed!</h1>\n" + 
+						"    <form action=\"./ProductServlet\" method=\"post\">\n" + 
+						"        <input type=\"text\" name=\"productId\" placeholder=\"enter product Id\"> <br><br>\n" + 
+						"        <input type=\"text\" name=\"productName\" placeholder=\"enter product name\"><br><br>\n" + 
+						"        <input type=\"number\" name=\"price\" placeholder=\"enter price\"><br><br>\n" + 
+						"        <input type=\"text\" name=\"seller\" placeholder=\"enter seller name\"><br><br>\n" + 
+						"        <button>Add Product</button>\n" + 
+						"    </form>\n" + 
+						"</body>\n" + 
+						"\n" + 
+						"</html>");	
+			}
+			
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	}
+
+}

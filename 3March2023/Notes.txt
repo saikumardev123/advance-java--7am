@@ -1,0 +1,15 @@
+
+
+   Servlets      +           JDBC 
+
+
+   Facebook Login:
+
+
+   username,password -> Servlet           JDBC                Database
+
+
+   Registering the user:
+
+   username, password, userid -> Servlet -> JDBC -> Database
+
