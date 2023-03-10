@@ -1,0 +1,77 @@
+Drawbacks of Servlets:
+
+1. writing html content in out.print() is always a challenge.
+
+2. To create a simple servlet, we need to write a class and implement 
+few methods accordingly. 
+
+Here are some disadvantages of using Servlet:
+
+Time-consuming: Modification in the Servlet file is time-consuming due to reloading, recompiling, and restarting the server.
+
+Hefty: Writing HTML code in Servlet programming is challenging, and it makes Servlet looks bulky.
+
+Difficult to understand: Writing complex business logic makes the application hard to comprehend.
+
+Difficult to modify: Because HTML code and Java code are mixed, changes made in one code might alter the other, making modification difficult.
+
+Requires broader knowledge: Servlet may not be suitable for non-java developers since it requires a profound knowledge of JSP Servlet.
+
+Dependent: A java runtime environment requires on the server to run Servlet.
+
+
+In Servlets, we write html code inside java code
+
+JSP:
+
+Java Server Pages is used to write server side code in a better way. 
+
+JSP is an extension to Servlet, however JSPs internally use Servlets.
+
+In JSP, we will write java code in html code. 
+
+
+<html>
+
+<head>
+
+</head>
+
+<body>
+
+       <form action="login.jsp" method="post">
+       <input type="text" name="username" placeholder="username here">
+       <input type="text" name="password" placeholder="password here">
+       <button>Login</button>
+       
+       </form>
+       
+        <% 
+        
+         String username=  request.getParameter("username");
+        String password = request.getParameter("password");
+ 
+         System.out.println("username "+ username);
+         System.out.println("password" + password);
+        
+        %>
+
+</body>
+
+</html>
+
+drawbacks of JSP:
+
+Too much of java code in JSP will make the jsp pages more complex. 
+
+MVC:  
+
+Model -  Data - JDBC 
+View - Presentation layer - JSP
+Controller - Servlet 
+
+
+JDBC - Hibernate
+
+Servlets -> JS--> Spring Framework -> Spring Boot
+
