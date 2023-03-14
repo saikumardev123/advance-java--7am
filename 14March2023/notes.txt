@@ -1,0 +1,40 @@
+Drawbacks of JDBC:
+
+1. Migration from one data base to another database is a challenge. 
+
+2. We need to write the code from scratch for connecting to database and performing the operations. 
+
+
+Hibernate:  Hibernate is a ORM (Object Relational Mapping) framework which is used to connect to Database 
+and perform operations. 
+
+advantages:
+
+The advantages of Hibernate over JDBC are:
+
+1. Hibernate code will work well for all databases, for ex: Oracle,MySQL, etc. where as JDBC is database specific.
+
+2. No knowledge of SQL is needed because Hibernate is a set of objects and a table is treated as an object, where as to work with JDBC, one need to know SQL.
+
+3. Query tuning is not required in Hibernate. The query tuning is automatic in hibernate by using criteria queries, and the result of performance is at its best. Where as in JDBC the query tuning is to be done by the database authors.
+
+4. With the support of cache of hibernate, the data can be placed in the cache for better performance. Where as in JDBC the java cache is to be implemented.
+
+
+How Hibernate Works?
+
+It takes the configuration provided(username,password,url)
+ and creates a session factory(a collection of sessions).
+ using session, we can perform the database operations. 
+
+Maven:
+* It is a build tool and dependency management system to manage the dependencies of an application.
+Maven does dependency management.
+
+
+
+
+
+
+
+
