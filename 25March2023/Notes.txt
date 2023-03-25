@@ -1,0 +1,35 @@
+Spring:
+
+Spring is a framework which provides an abstraction layer on the 
+existing implementations to accelrate application development.
+
+Spring framework comes up with different modules such as Spring Core, 
+AOP, Spring MVC, Spring Security....
+
+
+Spring Core: 
+
+The main responsibility of spring core is Dependency Injection. 
+
+Dependency Injection is done by IOC(Inversion of Control) Container. 
+
+To implement Dependency injection we need to follow composition / aggregation (has-a) relationship.
+
+class A{
+
+}
+class B{
+
+}
+class C{
+  A aa;
+  B bb;
+}
+
+
+
+
+
+
+
+
